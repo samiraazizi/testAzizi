@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author samira
+ * Here we can create new endpoints and then authenticate users and grant access to them to use these endpoints
+ */
+//todo create new apis as you need
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -24,7 +30,7 @@ public class UserController {
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/orders")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<String>> getOrdersCustomer() {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
