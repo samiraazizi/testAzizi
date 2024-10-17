@@ -30,14 +30,6 @@ public class UserController {
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/orders")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public ResponseEntity<List<String>> getOrdersCustomer() {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<String> list = new ArrayList<>();
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
-
     @PostMapping("/register")
     public User registerCustomer(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         return authenticationService.registerCustomer(userRegistrationDTO);
